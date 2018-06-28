@@ -1,0 +1,30 @@
+import requests
+import re
+from requests.exceptions import RequestException
+
+
+def get_one_page(url):
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            return response.text
+
+        return None
+    except RequestException:
+        return None
+
+def parse_one_page(html):
+    pattern = re.compile('<dd>.*?board-index.*?')
+
+def main():
+    url = 'http://maoyan.com/board/4?'
+
+    html = get_one_page(url)
+    print(html)
+
+
+if __name__ == "__main__":
+    main()
